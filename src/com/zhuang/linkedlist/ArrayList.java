@@ -1,9 +1,7 @@
-package com.zhuang.dynamic_list;
-
-import com.zhuang.linkedlist.AbstractList;
+package com.zhuang.linkedlist;
 
 @SuppressWarnings("unchecked")
-public class ArrayList<E> extends AbstractList<E> {
+public class ArrayList<E> {
 
 	/**
 	 * 元素的数量
@@ -15,7 +13,8 @@ public class ArrayList<E> extends AbstractList<E> {
 	 */
 	private E[] elements;
 
-	private static final int DEFAULT_CAPACITY = 10;
+	private static final int DEFAULT_CAPACITY = 2;
+	private static final int ELEMENT_NOT_FOUND = -1;
 
 	public ArrayList(int capacity) {
 		capacity = (capacity < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capacity;
@@ -236,5 +235,28 @@ public class ArrayList<E> extends AbstractList<E> {
 		}
 		sb.append("]");
 		return sb.toString();
+	}
+
+	private void outOfBounds(int index) {
+		throw new IndexOutOfBoundsException("Index:" + index + ",Size:" + size);
+	}
+
+	private void rangeCheck(int index) {
+		if (index < 0 || index >= size) {
+			outOfBounds(index);
+		}
+	}
+
+	private void rangeCheckForAdd(int index) {
+		if (index < 0 || index > size) {
+			outOfBounds(index);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		System.out.println("Person--finalize");
 	}
 }
