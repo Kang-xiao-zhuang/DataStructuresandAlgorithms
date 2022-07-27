@@ -1,7 +1,8 @@
 package com.zhuang.linkedlist;
 
 public abstract class AbstractList<E> implements List<E> {
-
+	public static final int DEFAULT_CAPACITY = 10;
+	public static final int ELEMENT_NOT_FOUND = -1;
 	/**
 	 * 元素的数量
 	 */
