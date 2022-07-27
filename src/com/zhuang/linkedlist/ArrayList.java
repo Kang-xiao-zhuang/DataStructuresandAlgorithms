@@ -1,5 +1,7 @@
 package com.zhuang.linkedlist;
 
+import java.util.Iterator;
+
 @SuppressWarnings("unchecked")
 public class ArrayList<E> {
 
@@ -145,7 +147,33 @@ public class ArrayList<E> {
 			elements[i - 1] = elements[i];
 		}
 		elements[--size] = null;
+		trim();
 		return oldelement;
+	}
+
+	/**
+	 * 
+	 * @Title: trim
+	 * @Description: 动态数组的缩容
+	 * @author: KangXiaoZhuang
+	 * @param:
+	 * @return: void
+	 * @throws
+	 */
+	private void trim() {
+		int oldCapacity = elements.length;
+		int newCapacity = oldCapacity >> 1;
+		// 容量大于一半 返回不缩
+		if (size > newCapacity || oldCapacity <= DEFAULT_CAPACITY) {
+			return;
+		}
+		
+		E[] newElements = (E[]) new Object[newCapacity];
+		for (int i = 0; i < size; i++) {
+			newElements[i] = elements[i];
+		}
+		elements = newElements;
+		System.out.println(oldCapacity + " 缩容为 " + newCapacity);
 	}
 
 	/**
