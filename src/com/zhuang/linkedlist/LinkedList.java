@@ -24,7 +24,6 @@ public class LinkedList<E> extends AbstractList<E> {
 		first = null;
 	}
 
-
 	@Override
 	public E get(int index) {
 		return node(index).element;
@@ -55,20 +54,20 @@ public class LinkedList<E> extends AbstractList<E> {
 	@Override
 	public int indexOf(E element) {
 		if (element == null) {
-			Node<E> node=first;
+			Node<E> node = first;
 			for (int i = 0; i < size; i++) {
 				if (node.element == null) {
 					return i;
 				}
-				node=node.next;
+				node = node.next;
 			}
 		} else {
-			Node<E> node=first;
+			Node<E> node = first;
 			for (int i = 0; i < size; i++) {
 				if (element.equals(node.element)) {
 					return i;
 				}
-				node=node.next;
+				node = node.next;
 			}
 		}
 		return ELEMENT_NOT_FOUND;
@@ -78,9 +77,12 @@ public class LinkedList<E> extends AbstractList<E> {
 	public void add(int index, E element) {
 		rangeCheckForAdd(index);
 		if (index == 0) {
+			// 索引为0的情况
 			first = new Node<>(element, first);
 		} else {
+			// 获取前面的一个值
 			Node<E> previous = node(index - 1);
+			// 新建一个节点
 			previous.next = new Node<>(element, previous.next);
 		}
 		size++;
@@ -106,11 +108,12 @@ public class LinkedList<E> extends AbstractList<E> {
 		}
 		return node;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("size=").append(size).append(", [");
-		Node<E> node=first;
+		Node<E> node = first;
 		for (int i = 0; i < size; i++) {
 			if (i != 0) {
 				sb.append(",");
@@ -119,7 +122,7 @@ public class LinkedList<E> extends AbstractList<E> {
 //			if (i != size - 1) {
 //			string.append(", ");
 //		}
-			node=node.next;
+			node = node.next;
 		}
 		sb.append("]");
 		return sb.toString();
