@@ -2,8 +2,8 @@ package com.zhuang.linkedlist;
 
 public interface List<E> {
 
-//	public static final int DEFAULT_CAPACITY = 10;
-//	public static final int ELEMENT_NOT_FOUND = -1;
+	public static final int DEFAULT_CAPACITY = 10;
+	public static final int ELEMENT_NOT_FOUND = -1;
 
 	/**
 	 * 
