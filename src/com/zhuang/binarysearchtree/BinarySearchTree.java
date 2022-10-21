@@ -91,6 +91,52 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		}
 	}
 
+	@SuppressWarnings("unused")
+	private Node<E> predecessor(Node<E> node) {
+		if (node == null) {
+			return null;
+		}
+		// 前驱节点在左子树当中（left.right.right.right....）
+		Node<E> pNode = node.left;
+		if (pNode != null) {
+			while (pNode.right != null) {
+				pNode = pNode.right;
+			}
+			return pNode;
+		}
+		// 从父节点、祖父节点中寻找前驱节点
+		// 父节点不为空 并且为父节点 的左子节点
+		while (node.parent != null && node == node.parent.left) {
+			node = node.parent;
+		}
+		// 循环终止条件
+		// node.parent == null
+		// node == node.parent.right
+		return node.parent;
+	}
+
+	@SuppressWarnings("unused")
+	private Node<E> successor(Node<E> node) {
+		if (node == null) {
+			return null;
+		}
+		// 前驱节点在左子树当中（right.left.left.left....）
+		Node<E> pNode = node.right;
+		if (pNode != null) {
+			while (pNode.left != null) {
+				pNode = pNode.left;
+			}
+			return pNode;
+		}
+
+		// 从父节点、祖父节点中寻找前驱节点
+		while (node.parent != null && node == node.parent.right) {
+			node = node.parent;
+		}
+
+		return node.parent;
+	}
+
 	@Override
 	public Object root() {
 		return root;
