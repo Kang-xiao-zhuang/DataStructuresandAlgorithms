@@ -1,8 +1,10 @@
 package com.zhuang.binarysearchtree;
 
 import java.util.Comparator;
+import java.util.Queue;
 
 import com.zhuang.binarysearchtree.printer.BinaryTreeInfo;
+import com.zhuang.linkedlist.LinkedList;
 
 @SuppressWarnings("unchecked")
 public class BinarySearchTree<E> implements BinaryTreeInfo {
@@ -73,6 +75,78 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		}
 		size++;
 	}
+
+	/**
+	 * 前序遍历
+	 */
+	public void preorderTraversal() {
+		preorderTraversal(root);
+	}
+
+	private void preorderTraversal(Node<E> node) {
+		if (node == null) {
+			return;
+		}
+		System.out.println(node.element);
+		preorderTraversal(node.left);
+		preorderTraversal(node.right);
+	}
+
+	/**
+	 * 中序遍历
+	 */
+	public void inorderTraversal() {
+		inorderTraversal(root);
+	}
+
+	private void inorderTraversal(Node<E> node) {
+		if (node == null) {
+			return;
+		}
+		inorderTraversal(node.left);
+		System.out.println(node.element);
+		inorderTraversal(node.right);
+	}
+
+	/**
+	 * 后序遍历
+	 */
+	public void postorderTraversal() {
+		postorderTraversal(root);
+	}
+
+	private void postorderTraversal(Node<E> node) {
+		if (node == null) {
+			return;
+		}
+		postorderTraversal(node.left);
+		postorderTraversal(node.right);
+		System.out.println(node.element);
+	}
+
+	/**
+	 * 层序遍历
+	 */
+	public void levelOrderTraversal() {
+		if (root == null) {
+			return;
+		}
+		Queue<Node<E>> queue = new java.util.LinkedList<>();
+		queue.offer(root);
+		while (!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			System.out.println(node.element);
+			// 左子节点入队
+			if (node.left != null) {
+				queue.offer(node.left);
+			}
+			// 右子节点入队
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
+		}
+	}
+
 
 	/**
 	 * @return 返回值等于0，代表e1和e2相等；返回值大于0，代表e1大于e2；返回值小于于0，代表e1小于e2
