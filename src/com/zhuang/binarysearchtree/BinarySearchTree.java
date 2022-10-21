@@ -253,8 +253,53 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		while (node.parent != null && node == node.parent.right) {
 			node = node.parent;
 		}
-
 		return node.parent;
+	}
+
+	/*
+	 * public boolean isComplete() { if (root == null) return false;
+	 * 
+	 * Queue<Node<E>> queue = new LinkedList<>(); queue.offer(root);
+	 * 
+	 * boolean leaf = false; while (!queue.isEmpty()) { Node<E> node = queue.poll();
+	 * if (leaf && !node.isLeaf()) return false; if (node.left != null && node.right
+	 * != null) { queue.offer(node.left); queue.offer(node.right); } else if
+	 * (node.left == null && node.right != null) { return false; } else { //
+	 * 后面遍历的节点都必须是叶子节点 leaf = true; if (node.left != null) { queue.offer(node.left);
+	 * } } }
+	 * 
+	 * return true; }
+	 */
+	public boolean isComplete() {
+		if (root == null) {
+			return false;
+		}
+
+		Queue<Node<E>> queue = new java.util.LinkedList<>();
+		queue.offer(root);
+		boolean leaf = false;
+		while (!queue.isEmpty()) {
+			Node<E> node = queue.poll();
+			if (leaf && !node.isLeaf()) {
+				return false;
+			}
+			// 左子节点不为空
+			if (node.left != null) {
+				queue.offer(node.left);
+				// 右子节点不为空 等价于 node.left == null && node.right != null
+			} else if (node.right != null) { //
+				return false;
+			}
+
+			if (node.right != null) {
+				queue.offer(node.right);
+			} else {
+				// node.left==null && node.right==null
+				// node.left!=null && node.right==null
+				leaf = true;
+			}
+		}
+		return true;
 	}
 
 	public int height() {
