@@ -1,13 +1,13 @@
 package com.zhuang.binarysearchtree;
 
 public class Node<E> {
-	 E element;
+	E element;
 	// 左节点
-	 Node<E> left;
+	Node<E> left;
 	// 右节点
-	 Node<E> right;
+	Node<E> right;
 	// 父节点
-	 Node<E> parent;
+	Node<E> parent;
 
 	// 构造函数
 	public Node(E element, Node<E> parent) {
@@ -17,6 +17,14 @@ public class Node<E> {
 
 	public boolean isLeaf() {
 		return left == null && right == null;
+	}
+
+	public boolean hasLeftChildren() {
+		return left != null && right == null;
+	}
+
+	public boolean hasRightChildren() {
+		return left == null && right != null;
 	}
 
 	public boolean hasTwoChildren() {
