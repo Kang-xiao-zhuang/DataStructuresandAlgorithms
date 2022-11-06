@@ -1,4 +1,4 @@
-package com.zhuang.heap;
+package com.zhuang.priorityqueue;
 
 import java.util.Comparator;
 
