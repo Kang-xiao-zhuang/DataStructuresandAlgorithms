@@ -3,7 +3,7 @@ package com.zhuang.stack;
 import com.zhuang.linkedlist.ArrayList;
 import com.zhuang.linkedlist.List;
 
-public class Stack<E>{
+public class Stack<E> {
 
 	private List<E> list = new ArrayList<>();
 
@@ -26,10 +26,9 @@ public class Stack<E>{
 	public E top() {
 		return list.get(list.size() - 1);
 	}
-	
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return list.toString();
 	}
 }
