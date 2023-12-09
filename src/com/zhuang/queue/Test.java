@@ -49,12 +49,10 @@ public class Test {
         deque.enQueueRear(44);
 
         System.out.println(deque);
-        // 出队
-        System.out.println(deque.deQueueFront());
         // 队头
         System.out.println(deque.front());
         /* 尾 44 33 11 22 头 */
-        while (!queue.isEmpty()) {
+        while (!deque.isEmpty()) {
             System.out.println(deque.deQueueRear());
         }
     }
