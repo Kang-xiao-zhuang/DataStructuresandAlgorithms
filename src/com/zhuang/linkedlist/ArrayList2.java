@@ -1,8 +1,8 @@
 package com.zhuang.linkedlist;
 
 @SuppressWarnings("unchecked")
-
 public class ArrayList2<E> extends AbstractList<E> {
+
 	/**
 	 * 所有的元素
 	 */
@@ -10,7 +10,7 @@ public class ArrayList2<E> extends AbstractList<E> {
 	private static final int DEFAULT_CAPACITY = 10;
 	
 	public ArrayList2(int capaticy) {
-		capaticy = (capaticy < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capaticy;
+		capaticy = Math.max(capaticy, DEFAULT_CAPACITY);
 		elements = (E[]) new Object[capaticy];
 	}
 	
@@ -33,23 +33,12 @@ public class ArrayList2<E> extends AbstractList<E> {
 		}
 	}
 
-	/**
-	 * 获取index位置的元素
-	 * @param index
-	 * @return
-	 */
 	public E get(int index) { // O(1)
 		rangeCheck(index);
 		
 		return elements[index]; 
 	}
 
-	/**
-	 * 设置index位置的元素
-	 * @param index
-	 * @param element
-	 * @return 原来的元素ֵ
-	 */
 	public E set(int index, E element) { // O(1)
 		rangeCheck(index);
 		
@@ -58,11 +47,6 @@ public class ArrayList2<E> extends AbstractList<E> {
 		return old;
 	}
 
-	/**
-	 * 在index位置插入一个元素
-	 * @param index
-	 * @param element
-	 */
 	public void add(int index, E element) { 
 		/*
 		 * 最好：O(1)
@@ -80,11 +64,6 @@ public class ArrayList2<E> extends AbstractList<E> {
 		size++;
 	} // size是数据规模
 
-	/**
-	 * 删除index位置的元素
-	 * @param index
-	 * @return
-	 */
 	public E remove(int index) {
 		/*
 		 * 最好：O(1)
@@ -104,11 +83,6 @@ public class ArrayList2<E> extends AbstractList<E> {
 		return old;
 	}
 
-	/**
-	 * 查看元素的索引
-	 * @param element
-	 * @return
-	 */
 	public int indexOf(E element) {
 		if (element == null) {
 			for (int i = 0; i < size; i++) {
@@ -121,11 +95,7 @@ public class ArrayList2<E> extends AbstractList<E> {
 		}
 		return ELEMENT_NOT_FOUND;
 	}
-	
-	/**
-	 * 保证要有capacity的容量
-	 * @param capacity
-	 */
+
 	private void ensureCapacity(int capacity) {
 		int oldCapacity = elements.length;
 		if (oldCapacity >= capacity) return;
@@ -170,12 +140,7 @@ public class ArrayList2<E> extends AbstractList<E> {
 			if (i != 0) {
 				string.append(", ");
 			}
-			
 			string.append(elements[i]);
-			
-//			if (i != size - 1) {
-//				string.append(", ");
-//			}
 		}
 		string.append("]");
 		return string.toString();

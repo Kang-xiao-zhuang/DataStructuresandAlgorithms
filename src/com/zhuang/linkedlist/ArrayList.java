@@ -1,7 +1,5 @@
 package com.zhuang.linkedlist;
 
-import java.util.Iterator;
-
 @SuppressWarnings("unchecked")
 public class ArrayList<E> extends AbstractList<E> {
 
@@ -12,7 +10,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	private static final int DEFAULT_CAPACITY = 10;
 
 	public ArrayList(int capaticy) {
-		capaticy = (capaticy < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capaticy;
+		capaticy = Math.max(capaticy, DEFAULT_CAPACITY);
 		elements = (E[]) new Object[capaticy];
 	}
 
